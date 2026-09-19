@@ -1,14 +1,37 @@
-{"message_id":"m-00001-1b2c3d","channel":"sms","sender":"AD-HDFCBK-S","received_at":"2026-07-01T09:15:00+05:30","device_id":"dev-3f1a90c47b21","body":"Rs.50000.00 credited to a/c **4821 on 01-07-26 at 09:14 by SALARY/TECH CORP. Avl Bal: Rs.142,218.10."}
-{"message_id":"m-00004-9c11ae","channel":"sms","sender":"AD-HDFCBK-S","received_at":"2026-07-04T07:19:00+05:30","device_id":"dev-3f1a90c47b21","body":"Rs.5 debited from a/c **4821 on 04-07-26 at 07:19 to UPI/WATER CAN. Avl Bal: Rs.92,213.10. Not you? Call 18002586161"}
-{"message_id":"m-00012-3f89a1","channel":"sms","sender":"AD-HDFCBK-S","received_at":"2026-07-04T13:42:00+05:30","device_id":"dev-3f1a90c47b21","body":"Rs.45.00 debited from a/c **4821 on 04-07-26 at 13:40 to UPI/CHAI POINT. Avl Bal: Rs.92,168.10. Not you? Call 18002586161"}
-{"message_id":"m-00087-1a2b3c","channel":"sms","sender":"AD-HDFCBK-S","received_at":"2026-07-04T20:24:10+05:30","device_id":"dev-3f1a90c47b21","body":"Rs.2499.50 debited from a/c **4821 on 04-07-26 at 20:24 to AMAZON PAY. Avl Bal: Rs.89,668.60."}
-{"message_id":"m-00089-77de01","channel":"email","sender":"alerts@hdfcbank.net","received_at":"2026-07-04T20:24:24+05:30","device_id":"dev-3f1a90c47b21","body":"Dear Customer, Account ending in 4821 spent INR 2499.50 at AMAZON PAY on 04-Jul-2026. Avail Bal INR 89668.60."}
-{"message_id":"m-00140-55ac99","channel":"sms","sender":"AD-HDFCBK-S","received_at":"2026-07-12T11:00:00+05:30","device_id":"dev-3f1a90c47b21","body":"Rs.25000.00 debited from a/c **4821 on 12-07-26 at 11:00 to UPI/SHASHIKUMAR. Avl Bal: Rs.64,668.60."}
-{"message_id":"m-00141-88fe22","channel":"sms","sender":"VK-ICICIB-S","received_at":"2026-07-12T11:01:00+05:30","device_id":"dev-3f1a90c47b21","body":"Your a/c XX9012 credited with INR 25,000.00 on 12-07-26 at 11:01 by UPI/SHASHIKUMAR."}
-{"message_id":"m-00200-99aa11","channel":"sms","sender":"VK-ICICIB-S","received_at":"2026-07-15T16:30:00+05:30","device_id":"dev-3f1a90c47b21","body":"Your a/c XX9012 debited with INR 6,000.00 on 15-07-26 at 16:30 for UPI/SHASHIKUMAR."}
-{"message_id":"m-00201-99aa12","channel":"sms","sender":"AD-HDFCBK-S","received_at":"2026-07-15T16:31:00+05:30","device_id":"dev-3f1a90c47b21","body":"Rs.6000.00 credited to a/c **4821 on 15-07-26 at 16:31 by UPI/SHASHIKUMAR. Avl Bal: Rs.70,668.60."}
-{"message_id":"m-00280-44cc33","channel":"sms","sender":"AD-HDFCBK-S","received_at":"2026-07-18T14:10:00+05:30","device_id":"dev-3f1a90c47b21","body":"Rs.28450.00 debited from a/c **3312 on 18-07-26 at 14:10 to FLIPKART INDIA. Avl Bal: Rs.0.00."}
-{"message_id":"m-00310-77bb88","channel":"sms","sender":"AD-HDFCBK-S","received_at":"2026-07-20T19:05:00+05:30","device_id":"dev-3f1a90c47b21","body":"Rs.51340.83 credited to a/c **4821 on 20-07-26 at 19:04 by DIVIDEND/MUTUAL FUND. Avl Bal: Rs.122,009.43."}
-{"message_id":"m-00401-22ee99","channel":"sms","sender":"AD-HDFCBK-S","received_at":"2026-07-25T12:00:00+05:30","device_id":"dev-3f1a90c47b21","body":"Rs.84568.88 debited from a/c **4821 on 25-07-26 at 11:58 to APPLE STORE BKC. Avl Bal: Rs.37,440.55."}
-{"message_id":"m-00450-11cc22","channel":"sms","sender":"VK-ICICIB-S","received_at":"2026-07-28T18:20:00+05:30","device_id":"dev-3f1a90c47b21","body":"Your a/c XX9012 debited with INR 12,450.00 on 28-07-26 at 18:20 for CROMA ELECTRONICS."}
-{"message_id":"m-00499-99ff00","channel":"sms","sender":"AD-HDFCBK-S","received_at":"2026-07-31T21:45:00+05:30","device_id":"dev-3f1a90c47b21","body":"Dear Customer, you are pre-approved for an instant personal loan of Rs.5,00,000 at 10.5% interest. Apply in 2 clicks."}
+{
+  "accounts": {
+    "4821": {
+      "transaction_count": 94,
+      "opening_balance": "92218.10",
+      "closing_balance": "177218.44",
+      "spend": "87068.38",
+      "income": "101340.83",
+      "micro_count": 52,
+      "micro_total": "2357.51",
+      "transferred_out": "25000.00",
+      "transferred_in": "6000.00"
+    },
+    "9012": {
+      "transaction_count": 48,
+      "opening_balance": "14200.50",
+      "closing_balance": "33200.50",
+      "spend": "12450.00",
+      "income": "6450.00",
+      "micro_count": 14,
+      "micro_total": "540.00",
+      "transferred_out": "6000.00",
+      "transferred_in": "25000.00"
+    },
+    "3312": {
+      "transaction_count": 32,
+      "opening_balance": "0.00",
+      "closing_balance": "28450.00",
+      "spend": "28450.00",
+      "income": "0.00",
+      "micro_count": 0,
+      "micro_total": "0.00",
+      "transferred_out": "0.00",
+      "transferred_in": "0.00"
+    }
+  }
+}
