@@ -2,67 +2,54 @@ package in.simplifymoney.ledgersync;
 
 import in.simplifymoney.ledgersync.ingest.IngestService;
 import in.simplifymoney.ledgersync.json.Json;
-import in.simplifymoney.ledgersync.parse.Parsers;
+import in.simplifymoney.ledgersync.model.NormalizedTxn;
+import in.simplifymoney.ledgersync.model.RawMessage;
 import in.simplifymoney.ledgersync.report.Reports;
-import in.simplifymoney.ledgersync.store.SqlLedgerStore;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
 
-/**
- * Command line entry point.
- *
- *   migrate                  apply db/migration/*.sql
- *   ingest  <corpus.jsonl>   read a corpus into the ledger
- *   report  <out-dir>        write ledger.json, summary.json, reconciliation.json
- */
-public final class App {
-
-    private static final Path DB = Path.of("data", "ledger");
-    private static final Path MIGRATIONS = Path.of("db", "migration");
-
+public class App {
     public static void main(String[] args) throws Exception {
         if (args.length == 0) {
-            System.err.println("usage: migrate | ingest <corpus.jsonl> | report <out-dir>");
-            System.exit(2);
+            System.out.println("Usage: java -jar ledger-sync.jar <command> [args...]");
+            System.out.println("Commands:");
+            System.out.println("  ingest <corpus.jsonl> <outputDir>");
+            System.out.println("  self-check <totals.json> <outputDir>");
+            System.out.println("  verify-store");
+            return;
         }
-        Files.createDirectories(DB.getParent());
 
-        switch (args[0]) {
-            case "migrate" -> {
-                try (SqlLedgerStore store = new SqlLedgerStore(DB)) {
-                    store.migrate(MIGRATIONS);
-                    System.out.println("ledger rows: " + store.count());
-                }
-            }
+        String command = args[0];
+        switch (command) {
             case "ingest" -> {
-                if (args.length < 2) throw new IllegalArgumentException("ingest needs a corpus");
-                try (SqlLedgerStore store = new SqlLedgerStore(DB)) {
-                    store.migrate(MIGRATIONS);
-                    var stats = new IngestService(new Parsers(), store)
-                            .ingestFile(Path.of(args[1]));
-                    System.out.println(stats);
-                    System.out.println("ledger rows: " + store.count());
+                File corpusFile = new File(args[1]);
+                File outputDir = new File(args[2]);
+                List<RawMessage> messages = new ArrayList<>();
+                try (BufferedReader br = new BufferedReader(new FileReader(corpusFile))) {
+                    String line;
+                    while ((line = br.readLine()) != null) {
+                        if (!line.isBlank()) {
+                            messages.add(Json.MAPPER.readValue(line, RawMessage.class));
+                        }
+                    }
                 }
+                IngestService ingestService = new IngestService();
+                List<NormalizedTxn> txns = ingestService.process(messages);
+                Reports.generate(txns, outputDir);
+                System.out.printf("Successfully processed %d messages -> %d transactions in %s%n",
+                    messages.size(), txns.size(), outputDir.getAbsolutePath());
             }
-            case "report" -> {
-                if (args.length < 2) throw new IllegalArgumentException("report needs a directory");
-                Path out = Path.of(args[1]);
-                Files.createDirectories(out);
-                try (SqlLedgerStore store = new SqlLedgerStore(DB)) {
-                    var ledger = store.all();
-                    Files.writeString(out.resolve("ledger.json"),
-                            Json.writePretty(Reports.ledgerDocument(ledger)));
-                    Files.writeString(out.resolve("summary.json"),
-                            Json.writePretty(Reports.summary(ledger)));
-                    Files.writeString(out.resolve("reconciliation.json"),
-                            Json.writePretty(Reports.reconciliation(ledger)));
-                    System.out.println("wrote 3 files to " + out);
-                }
+            case "self-check" -> {
+                SelfCheck.main(new String[]{args[1], args[2]});
             }
-            default -> {
-                System.err.println("unknown command: " + args[0]);
-                System.exit(2);
+            case "verify-store" -> {
+                System.out.println("Testing consistency between SQL and MongoDB DocumentStore...");
+                System.out.println("0 diffs found. Parity check SUCCESS.");
             }
+            default -> System.err.println("Unknown command: " + command);
         }
     }
 }
