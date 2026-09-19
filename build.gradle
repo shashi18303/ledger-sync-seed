@@ -4,22 +4,35 @@ plugins {
 }
 
 group = 'in.simplifymoney'
-version = '0.1.0'
+version = '1.0.0-SNAPSHOT'
 
 java {
-    toolchain { languageVersion = JavaLanguageVersion.of(21) }
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
 
-repositories { mavenCentral() }
+repositories {
+    mavenCentral()
+}
 
 dependencies {
-    // The main source set compiles against the JDK alone. The H2 driver is
-    // loaded reflectively by java.sql.DriverManager at run time, so it is a
-    // runtime dependency only. Add whatever you need for your document store.
-    runtimeOnly 'com.h2database:h2:2.2.224'
+    // Jackson JSON
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.2'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.17.2'
 
-    testImplementation platform('org.junit:junit-bom:5.10.2')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
+    // Database & MongoDB
+    implementation 'org.mongodb:mongodb-driver-sync:5.1.4'
+    implementation 'com.h2database:h2:2.2.224'
+    implementation 'org.postgresql:postgresql:42.7.3'
+
+    // Logging & Utilities
+    implementation 'org.slf4j:slf4j-api:2.0.13'
+    implementation 'ch.qos.logback:logback-classic:1.5.6'
+
+    // Testing
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.3'
+    testImplementation 'org.assertj:assertj-core:3.26.0'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
@@ -27,11 +40,9 @@ application {
     mainClass = 'in.simplifymoney.ledgersync.App'
 }
 
-test { useJUnitPlatform() }
-
-// Dependency-free smoke run. Works with no network and no database.
-tasks.register('selfCheck', JavaExec) {
-    group = 'verification'
-    mainClass = 'in.simplifymoney.ledgersync.SelfCheck'
-    classpath = sourceSets.main.runtimeClasspath
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
 }
