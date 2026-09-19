@@ -1,4 +1,4 @@
--- V1__initial.sql: Legacy relational ledger store schema
+a-- V1__initial.sql: Legacy relational ledger store schema
 CREATE TABLE IF NOT EXISTS transactions (
     id VARCHAR(64) PRIMARY KEY,
     account_last4 VARCHAR(4) NOT NULL,
