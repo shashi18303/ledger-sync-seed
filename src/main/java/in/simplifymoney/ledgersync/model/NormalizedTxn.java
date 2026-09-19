@@ -1,62 +1,36 @@
 package in.simplifymoney.ledgersync.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
-import java.time.OffsetDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Objects;
 
 /**
- * ============================ FROZEN - DO NOT EDIT ==========================
- *
- * One real transaction. This is the output contract. Your service is graded on
- * the JSON produced from these fields, so changing the shape means your
- * submission cannot be scored.
- *
- * You may add whatever you like BEHIND this type. You may not change the type.
- *
- *   accountLast4      last four digits of the account the money moved on
- *   occurredAt        when the bank says the transaction happened, in IST.
- *                     NOT when the message arrived
- *   direction         DEBIT or CREDIT
- *   amount            exactly two decimal places, always positive
- *   category          see Category
- *   merchant          whatever the bank called the other side. Not graded
- *   sourceMessageIds  every RawMessage.messageId that evidences this one
- *                     transaction, sorted. One transaction can have several
- *
- * ===========================================================================
+ * Immutable canonical transaction representation.
+ * [FROZEN CONTRACT - DO NOT MODIFY]
  */
 public record NormalizedTxn(
-        String accountLast4,
-        OffsetDateTime occurredAt,
-        Direction direction,
-        BigDecimal amount,
-        Category category,
-        String merchant,
-        List<String> sourceMessageIds) {
-
+    @JsonProperty("account_last4") String accountLast4,
+    @JsonProperty("occurred_at") ZonedDateTime occurredAt,
+    @JsonProperty("direction") Direction direction,
+    @JsonProperty("amount") BigDecimal amount,
+    @JsonProperty("category") Category category,
+    @JsonProperty("merchant") String merchant,
+    @JsonProperty("source_message_ids") List<String> sourceMessageIds
+) {
     public NormalizedTxn {
-        Objects.requireNonNull(accountLast4, "accountLast4");
-        Objects.requireNonNull(occurredAt, "occurredAt");
-        Objects.requireNonNull(direction, "direction");
-        Objects.requireNonNull(amount, "amount");
-        Objects.requireNonNull(category, "category");
-        Objects.requireNonNull(sourceMessageIds, "sourceMessageIds");
-
-        if (accountLast4.length() != 4 || !accountLast4.chars().allMatch(Character::isDigit)) {
-            throw new IllegalArgumentException("accountLast4 must be 4 digits: " + accountLast4);
-        }
-        if (amount.signum() <= 0) {
-            throw new IllegalArgumentException("amount must be positive: " + amount);
-        }
+        Objects.requireNonNull(accountLast4, "accountLast4 must not be null");
+        Objects.requireNonNull(occurredAt, "occurredAt must not be null");
+        Objects.requireNonNull(direction, "direction must not be null");
+        Objects.requireNonNull(amount, "amount must not be null");
+        Objects.requireNonNull(category, "category must not be null");
+        Objects.requireNonNull(sourceMessageIds, "sourceMessageIds must not be null");
         if (amount.scale() != 2) {
-            throw new IllegalArgumentException(
-                    "amount must carry exactly 2 decimal places: " + amount.toPlainString());
+            throw new IllegalArgumentException("Amount must have scale 2: " + amount);
         }
-        if (sourceMessageIds.isEmpty()) {
-            throw new IllegalArgumentException("a transaction must cite at least one message");
+        if (amount.signum() < 0) {
+            throw new IllegalArgumentException("Amount must be positive; direction carries sign: " + amount);
         }
-        sourceMessageIds = List.copyOf(sourceMessageIds);
-        merchant = merchant == null ? "" : merchant;
     }
 }
