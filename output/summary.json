@@ -1,0 +1,28 @@
+{
+  "accounts": {
+    "3312": {
+      "spend": "28450.00",
+      "income": "0.00",
+      "micro_count": 0,
+      "micro_total": "0.00",
+      "transferred_out": "0.00",
+      "transferred_in": "0.00"
+    },
+    "4821": {
+      "spend": "87068.38",
+      "income": "101340.83",
+      "micro_count": 2,
+      "micro_total": "50.00",
+      "transferred_out": "25000.00",
+      "transferred_in": "6000.00"
+    },
+    "9012": {
+      "spend": "12450.00",
+      "income": "0.00",
+      "micro_count": 0,
+      "micro_total": "0.00",
+      "transferred_out": "6000.00",
+      "transferred_in": "25000.00"
+    }
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "transactions": [
+    {
+      "account_last4": "9012",
+      "occurred_at": "2026-07-28T18:20:00+05:30",
+      "direction": "debit",
+      "amount": "12450.00",
+      "category": "SPEND",
+      "merchant": "CROMA ELECTRONICS",
+      "source_message_ids": [
+        "m-00450-11cc22"
+      ]
+    },
+    {
+      "account_last4": "4821",
+      "occurred_at": "2026-07-25T11:58:00+05:30",
+      "direction": "debit",
+      "amount": "84568.88",
+      "category": "SPEND",
+      "merchant": "APPLE STORE BKC",
+      "source_message_ids": [
+        "m-00401-22ee99"
+      ]
+    },
+    {
+      "account_last4": "4821",
+      "occurred_at": "2026-07-20T19:04:00+05:30",
+      "direction": "credit",
+      "amount": "51340.83",
+      "category": "INCOME",
+      "merchant": "DIVIDEND/MUTUAL FUND",
+      "source_message_ids": [
+        "m-00310-77bb88"
+      ]
+    },
+    {
+      "account_last4": "3312",
+      "occurred_at": "2026-07-18T14:10:00+05:30",
+      "direction": "debit",
+      "amount": "28450.00",
+      "category": "SPEND",
+      "merchant": "FLIPKART INDIA",
+      "source_message_ids": [
+        "m-00280-44cc33"
+      ]
+    },
+    {
+      "account_last4": "4821",
+      "occurred_at": "2026-07-15T16:31:00+05:30",
+      "direction": "credit",
+      "amount": "6000.00",
+      "category": "TRANSFER",
+      "merchant": "UPI/SHASHIKUMAR",
+      "source_message_ids": [
+        "m-00201-99aa12"
+      ]
+    },
+    {
+      "account_last4": "9012",
+      "occurred_at": "2026-07-15T16:30:00+05:30",
+      "direction": "debit",
+      "amount": "6000.00",
+      "category": "TRANSFER",
+      "merchant": "UPI/SHASHIKUMAR",
+      "source_message_ids": [
+        "m-00200-99aa11"
+      ]
+    },
+    {
+      "account_last4": "9012",
+      "occurred_at": "2026-07-12T11:01:00+05:30",
+      "direction": "credit",
+      "amount": "25000.00",
+      "category": "TRANSFER",
+      "merchant": "UPI/SHASHIKUMAR",
+      "source_message_ids": [
+        "m-00141-88fe22"
+      ]
+    },
+    {
+      "account_last4": "4821",
+      "occurred_at": "2026-07-12T11:00:00+05:30",
+      "direction": "debit",
+      "amount": "25000.00",
+      "category": "TRANSFER",
+      "merchant": "UPI/SHASHIKUMAR",
+      "source_message_ids": [
+        "m-00140-55ac99"
+      ]
+    },
+    {
+      "account_last4": "4821",
+      "occurred_at": "2026-07-04T20:24:00+05:30",
+      "direction": "debit",
+      "amount": "2499.50",
+      "category": "SPEND",
+      "merchant": "AMAZON PAY",
+      "source_message_ids": [
+        "m-00087-1a2b3c",
+        "m-00089-77de01"
+      ]
+    },
+    {
+      "account_last4": "4821",
+      "occurred_at": "2026-07-04T13:40:00+05:30",
+      "direction": "debit",
+      "amount": "45.00",
+      "category": "MICRO",
+      "merchant": "UPI/CHAI POINT",
+      "source_message_ids": [
+        "m-00012-3f89a1"
+      ]
+    },
+    {
+      "account_last4": "4821",
+      "occurred_at": "2026-07-04T07:19:00+05:30",
+      "direction": "debit",
+      "amount": "5.00",
+      "category": "MICRO",
+      "merchant": "UPI/WATER CAN",
+      "source_message_ids": [
+        "m-00004-9c11ae"
+      ]
+    },
+    {
+      "account_last4": "4821",
+      "occurred_at": "2026-07-01T09:14:00+05:30",
+      "direction": "credit",
+      "amount": "50000.00",
+      "category": "INCOME",
+      "merchant": "SALARY/TECH CORP",
+      "source_message_ids": [
+        "m-00001-1b2c3d"
+      ]
+    }
+  ]
+}
